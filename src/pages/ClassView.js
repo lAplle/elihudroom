@@ -10,7 +10,8 @@ import {
 	PlusIcon,
 	UserGroupIcon,
 	AcademicCapIcon,
-	DocumentTextIcon
+	DocumentTextIcon,
+	ClipboardDocumentIcon
 } from "@heroicons/react/24/outline";
 
 function ClassView() {
@@ -23,6 +24,7 @@ function ClassView() {
 	const [userRole, setUserRole] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [showCreatePost, setShowCreatePost] = useState(false);
+	const [copiedCode, setCopiedCode] = useState(false);
 
 	useEffect(() => {
 		const fetchClassData = async () => {
@@ -85,6 +87,25 @@ function ClassView() {
 		// La lista se actualizará automáticamente gracias al listener en tiempo real
 	};
 
+	const copyClassCode = async () => {
+		try {
+			await navigator.clipboard.writeText(classData.codigo);
+			setCopiedCode(true);
+			setTimeout(() => setCopiedCode(false), 2000); // Ocultar después de 2 segundos
+		} catch (error) {
+			console.error("Error copying to clipboard:", error);
+			// Fallback para navegadores que no soportan clipboard API
+			const textArea = document.createElement("textarea");
+			textArea.value = classData.codigo;
+			document.body.appendChild(textArea);
+			textArea.select();
+			document.execCommand("copy");
+			document.body.removeChild(textArea);
+			setCopiedCode(true);
+			setTimeout(() => setCopiedCode(false), 2000); // Ocultar después de 2 segundos
+		}
+	};
+
 	if (loading) {
 		return <div className="loading">Cargando clase...</div>;
 	}
@@ -102,7 +123,21 @@ function ClassView() {
 				</button>
 				<div className="class-info">
 					<h1>{classData.nombre}</h1>
-					<p className="class-code">Código: {classData.codigo}</p>
+					<div className="class-code-container">
+						<p className="class-code">Código: {classData.codigo}</p>
+						<div className="copy-code-wrapper">
+							<button 
+								onClick={copyClassCode}
+								className={`copy-code-btn ${copiedCode ? 'copied' : ''}`}
+								title="Copiar código al portapapeles"
+							>
+								<ClipboardDocumentIcon className="copy-icon" />
+							</button>
+							{copiedCode && (
+								<span className="copy-feedback">¡Copiado!</span>
+							)}
+						</div>
+					</div>
 					<p className="class-description">{classData.descripcion}</p>
 					<div className="class-stats">
 						<span>

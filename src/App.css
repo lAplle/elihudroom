@@ -583,10 +583,90 @@ body {
   margin-bottom: 10px;
 }
 
+.class-code-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
 .class-code {
   color: #6c757d;
   font-size: 1.1rem;
-  margin-bottom: 10px;
+  margin: 0;
+}
+
+.copy-code-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.copy-code-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.copy-code-btn:hover {
+  background: #5a67d8;
+  transform: scale(1.05);
+}
+
+.copy-code-btn.copied {
+  background: #28a745;
+  transform: scale(1.1);
+  animation: copySuccess 0.6s ease;
+}
+
+.copy-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.copy-code-btn.copied .copy-icon {
+  transform: scale(1.2);
+}
+
+.copy-feedback {
+  font-size: 0.75rem;
+  color: #28a745;
+  font-weight: 600;
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes copySuccess {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .class-description {
@@ -1020,5 +1100,19 @@ body {
   .post-meta {
     flex-direction: column;
     gap: 5px;
+  }
+  
+  .class-code-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .copy-code-btn {
+    align-self: flex-start;
+  }
+  
+  .copy-code-wrapper {
+    align-self: flex-start;
   }
 }
