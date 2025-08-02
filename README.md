@@ -1,70 +1,204 @@
-# Getting Started with Create React App
+# 🎓 Elihudroom - Plataforma Educativa
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Una plataforma educativa inspirada en Google Classroom que permite a maestros crear clases y a alumnos unirse para ver publicaciones y materiales.
 
-## Available Scripts
+## ✨ Características
 
-In the project directory, you can run:
+### 👨‍🏫 Para Maestros:
+- Crear clases con nombre, descripción y código único
+- Hacer publicaciones con texto y archivos adjuntos (PDFs e imágenes)
+- Gestionar múltiples clases
+- Ver lista de alumnos inscritos
 
-### `npm start`
+### 👨‍🎓 Para Alumnos:
+- Unirse a clases usando códigos únicos
+- Ver publicaciones del maestro en tiempo real
+- Descargar archivos adjuntos (PDFs e imágenes)
+- Acceder a múltiples clases
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 Tecnologías Utilizadas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend**: React 19
+- **Backend**: Firebase
+- **Autenticación**: Firebase Auth
+- **Base de datos**: Firestore
+- **Almacenamiento**: Firebase Storage
+- **Routing**: React Router DOM
 
-### `npm test`
+## 📋 Requisitos Previos
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (versión 16 o superior)
+- npm o yarn
+- Cuenta de Firebase
 
-### `npm run build`
+## 🔧 Instalación
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clonar el repositorio**
+   ```bash
+   git clone <url-del-repositorio>
+   cd elihudroom
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Configurar Firebase**
+   - Ve a [Firebase Console](https://console.firebase.google.com/)
+   - Crea un nuevo proyecto
+   - Habilita Authentication con Email/Password
+   - Crea una base de datos Firestore
+   - Habilita Firebase Storage
+   - Obtén las credenciales de configuración
 
-### `npm run eject`
+4. **Configurar variables de Firebase**
+   - Abre `src/firebase.js`
+   - Reemplaza la configuración con tus credenciales de Firebase
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. **Ejecutar la aplicación**
+   ```bash
+   npm start
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔥 Configuración de Firebase
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 1. Autenticación
+- Ve a Authentication > Sign-in method
+- Habilita "Email/Password"
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 2. Firestore Database
+- Ve a Firestore Database
+- Crea una base de datos en modo de prueba
+- Estructura de colecciones:
+  ```
+  usuarios/
+    {userId}/
+      email: string
+      role: "maestro" | "alumno"
+  
+  clases/
+    {classId}/
+      nombre: string
+      descripcion: string
+      codigo: string
+      maestroId: string
+      maestroEmail: string
+      fechaCreacion: timestamp
+      alumnos: array
+  
+  inscripciones/
+    {enrollmentId}/
+      claseId: string
+      alumnoId: string
+      alumnoEmail: string
+      fechaInscripcion: timestamp
+  
+  clases/{classId}/publicaciones/
+    {postId}/
+      titulo: string
+      contenido: string
+      archivos: array
+      maestroId: string
+      maestroEmail: string
+      fechaCreacion: timestamp
+  ```
 
-## Learn More
+### 3. Storage
+- Ve a Storage
+- Configura las reglas de seguridad para permitir subida de archivos
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📱 Uso de la Aplicación
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Registro e Inicio de Sesión
+1. Abre la aplicación en tu navegador
+2. Regístrate como maestro o alumno
+3. Inicia sesión con tus credenciales
 
-### Code Splitting
+### Para Maestros:
+1. **Crear una Clase**
+   - Haz clic en "Crear nueva clase"
+   - Completa el nombre y descripción
+   - Se generará automáticamente un código único
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. **Hacer Publicaciones**
+   - Entra a tu clase
+   - Haz clic en "Crear Publicación"
+   - Escribe título y contenido
+   - Adjunta archivos (PDFs o imágenes)
+   - Publica
 
-### Analyzing the Bundle Size
+### Para Alumnos:
+1. **Unirse a una Clase**
+   - Haz clic en "Unirse a una clase"
+   - Ingresa el código de la clase
+   - Confirma la inscripción
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. **Ver Publicaciones**
+   - Entra a la clase
+   - Ve las publicaciones del maestro
+   - Descarga archivos adjuntos
 
-### Making a Progressive Web App
+## 🎨 Características de la UI
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Diseño Responsivo**: Funciona en desktop, tablet y móvil
+- **Interfaz Moderna**: Gradientes y animaciones suaves
+- **Tiempo Real**: Las publicaciones se actualizan automáticamente
+- **Navegación Intuitiva**: Fácil de usar para todos los usuarios
 
-### Advanced Configuration
+## 🔒 Seguridad
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Autenticación con Firebase Auth
+- Reglas de Firestore para proteger datos
+- Validación de roles y permisos
+- Códigos únicos para clases
 
-### Deployment
+## 🚀 Despliegue
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Firebase Hosting
+```bash
+npm run build
+firebase init hosting
+firebase deploy
+```
 
-### `npm run build` fails to minify
+### Netlify
+```bash
+npm run build
+# Sube la carpeta build a Netlify
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Vercel
+```bash
+npm run build
+# Conecta tu repositorio a Vercel
+```
+
+## 🐛 Solución de Problemas
+
+### Error de Autenticación
+- Verifica que Firebase Auth esté habilitado
+- Confirma que las credenciales sean correctas
+
+### Error de Base de Datos
+- Verifica las reglas de Firestore
+- Confirma que las colecciones existan
+
+### Error de Storage
+- Verifica las reglas de Storage
+- Confirma que los archivos no excedan el límite
+
+## 📞 Soporte
+
+Si tienes problemas o preguntas:
+1. Revisa la documentación de Firebase
+2. Verifica la consola del navegador para errores
+3. Asegúrate de que todas las dependencias estén instaladas
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT.
+
+---
+
+**¡Disfruta usando Elihudroom! 🎓✨**
