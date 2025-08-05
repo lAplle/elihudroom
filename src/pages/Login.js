@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 function Login() {
+	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [role, setRole] = useState("alumno");
@@ -36,11 +37,13 @@ function Login() {
 				const cred = await createUserWithEmailAndPassword(
 					auth,
 					email,
-					password
+					password,
+					name
 				);
 				await setDoc(doc(db, "usuarios", cred.user.uid), {
 					email,
 					role,
+					name,
 				});
 			} else {
 				await signInWithEmailAndPassword(auth, email, password);
@@ -86,6 +89,13 @@ function Login() {
 								<option value="alumno">Alumno</option>
 								<option value="maestro">Maestro</option>
 							</select>
+							<input
+								type="text"
+								placeholder="Nombre completo"
+								value={name}
+								onChange={(e) => setName(e.target.value)}
+								required
+							/>
 						</>
 					)}
 					<button type="submit">

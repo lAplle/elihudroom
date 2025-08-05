@@ -274,6 +274,58 @@ body {
   margin-bottom: 15px;
 }
 
+.class-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  flex: 1;
+}
+
+.class-header-top h3 {
+  color: #333;
+  font-size: 1.3rem;
+  margin: 0;
+  flex: 1;
+}
+
+.class-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-class-btn,
+.delete-class-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.edit-class-btn {
+  color: #667eea;
+}
+
+.edit-class-btn:hover {
+  background: #f3f4f6;
+  transform: scale(1.05);
+}
+
+.delete-class-btn {
+  color: #ef4444;
+}
+
+.delete-class-btn:hover {
+  background: #fef2f2;
+  transform: scale(1.05);
+}
+
 .class-card-header h3 {
   color: #333;
   font-size: 1.3rem;
@@ -1049,6 +1101,38 @@ body {
   padding: 1.5rem;
 }
 
+.edit-class-modal {
+  max-width: 500px;
+  width: 90vw;
+}
+
+.edit-class-form {
+  padding: 1.5rem;
+}
+
+.code-display {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.code-display .class-code {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  color: #495057;
+  background: none;
+  padding: 0;
+}
+
+.code-display small {
+  color: #6c757d;
+  font-style: italic;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .dashboard-header {
@@ -1094,6 +1178,15 @@ body {
   }
   
   .post-actions {
+    align-self: flex-end;
+  }
+  
+  .class-header-top {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .class-actions {
     align-self: flex-end;
   }
   

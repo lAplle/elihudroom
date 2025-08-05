@@ -83,7 +83,7 @@ Una plataforma educativa inspirada en Google Classroom que permite a maestros cr
       descripcion: string
       codigo: string
       maestroId: string
-      maestroEmail: string
+      maestroName: string
       fechaCreacion: timestamp
       alumnos: array
   
@@ -100,7 +100,7 @@ Una plataforma educativa inspirada en Google Classroom que permite a maestros cr
       contenido: string
       archivos: array
       maestroId: string
-      maestroEmail: string
+      maestroName: string
       fechaCreacion: timestamp
   ```
 

@@ -269,7 +269,7 @@ function PostList({ posts, userRole, classId, onPostUpdated, onPostDeleted }) {
 						<div className="post-meta">
 							<span className="post-author">
 								<UserIcon className="meta-icon" />
-								{post.maestroEmail}
+								{post.maestroName}
 							</span>
 							<span className="post-date">
 								<CalendarIcon className="meta-icon" />

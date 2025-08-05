@@ -142,7 +142,7 @@ function ClassView() {
 					<div className="class-stats">
 						<span>
 							<UserGroupIcon className="stat-icon" />
-							Maestro: {classData.maestroEmail}
+							Maestro: {classData.maestroName}
 						</span>
 						<span>
 							<AcademicCapIcon className="stat-icon" />

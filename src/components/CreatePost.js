@@ -99,7 +99,7 @@ function CreatePost({ classId, onClose, onPostCreated }) {
 				contenido: content.trim(),
 				archivos: fileData,
 				maestroId: user.uid,
-				maestroEmail: user.email,
+				maestroName: user.name,
 				fechaCreacion: new Date()
 			};
 

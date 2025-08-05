@@ -25,7 +25,7 @@ function CreateClass({ onClose, onClassCreated }) {
 				descripcion: description,
 				codigo: classCode,
 				maestroId: user.uid,
-				maestroEmail: user.email,
+				maestroName: user.name,
 				fechaCreacion: new Date(),
 				alumnos: []
 			};

@@ -87,7 +87,7 @@ function Dashboard() {
 					<h1>Elihudroom</h1>
 				</div>
 				<div className="user-info">
-					<span>Hola, {user?.email}</span>
+					<span>Hola, {user?.name}</span>
 					<span className="role-badge">
 						{userRole === "maestro" ? (
 							<>
@@ -139,7 +139,20 @@ function Dashboard() {
 							}
 						</p>
 					) : (
-						<ClassList classes={userClasses} userRole={userRole} />
+						<ClassList 
+							classes={userClasses} 
+							userRole={userRole}
+							onClassUpdated={(updatedClass) => {
+								setUserClasses(prevClasses => 
+									prevClasses.map(c => c.id === updatedClass.id ? updatedClass : c)
+								);
+							}}
+							onClassDeleted={(deletedClassId) => {
+								setUserClasses(prevClasses => 
+									prevClasses.filter(c => c.id !== deletedClassId)
+								);
+							}}
+						/>
 					)}
 				</div>
 			</main>
