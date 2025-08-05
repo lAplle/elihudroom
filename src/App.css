@@ -169,10 +169,39 @@ body {
 /* Estilos del Login */
 .login-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
   padding: 20px;
+  padding-top: 40px;
+}
+
+.login-header {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.login-header-icon {
+  width: 32px;
+  height: 32px;
+  color: #667eea;
+}
+
+.login-header h1 {
+  color: #333;
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: 700;
 }
 
 .login-form {
@@ -182,6 +211,15 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.login-form.fade-out {
+  animation: fadeOut 0.15s ease-in forwards;
+}
+
+.login-form.fade-in {
+  animation: fadeIn 0.3s ease-out;
 }
 
 .login-form h2 {
@@ -1315,6 +1353,20 @@ body {
 }
 
 /* Responsive */
+@media (max-width: 768px) {
+  .login-header {
+    margin-bottom: 20px;
+  }
+  
+  .login-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .login-header-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
 @media (max-width: 768px) {
   .dashboard-header {
     flex-direction: column;

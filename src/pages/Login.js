@@ -7,6 +7,7 @@ import {
 import { setDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { AcademicCapIcon } from "@heroicons/react/24/outline";
 
 function Login() {
 	const [name, setName] = useState("");
@@ -15,6 +16,7 @@ function Login() {
 	const [role, setRole] = useState("alumno");
 	const [isRegister, setIsRegister] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [isTransitioning, setIsTransitioning] = useState(false);
 	const navigate = useNavigate();
 	const { user } = useAuth();
 
@@ -54,9 +56,23 @@ function Login() {
 		}
 	};
 
+	const handleToggleForm = () => {
+		setIsTransitioning(true);
+		setTimeout(() => {
+			setIsRegister(!isRegister);
+			setIsTransitioning(false);
+		}, 150); // Tiempo de la animación fadeOut
+	};
+
 	return (
 		<div className="login-container">
-			<div className="login-form">
+			<div className="login-header">
+				<div className="login-header-left">
+					<AcademicCapIcon className="login-header-icon" />
+					<h1>Elihudroom</h1>
+				</div>
+			</div>
+			<div className={`login-form ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
 				<h2>{isRegister ? "Registro" : "Inicio de sesión"}</h2>
 				<form onSubmit={handleSubmit}>
 					<input
@@ -103,7 +119,7 @@ function Login() {
 					</button>
 				</form>
 				<button 
-					onClick={() => setIsRegister(!isRegister)}
+					onClick={handleToggleForm}
 					className="toggle-form-btn"
 				>
 					{isRegister ? "Ya tengo cuenta" : "Quiero registrarme"}
