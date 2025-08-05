@@ -292,6 +292,7 @@ body {
 .class-actions {
   display: flex;
   gap: 8px;
+  margin-right: 8px;
 }
 
 .edit-class-btn,
@@ -313,12 +314,13 @@ body {
 }
 
 .edit-class-btn:hover {
-  background: #f3f4f6;
+  background: #f0f5ff;
   transform: scale(1.05);
 }
 
 .delete-class-btn {
   color: #ef4444;
+
 }
 
 .delete-class-btn:hover {
@@ -751,12 +753,11 @@ body {
 }
 
 .class-actions {
-  margin-bottom: 30px;
   text-align: center;
 }
 
 .posts-section h2 {
-  margin-bottom: 20px;
+  margin: 20px;
   color: #333;
   font-size: 1.8rem;
   display: flex;
@@ -829,21 +830,23 @@ body {
 }
 
 .edit-btn {
-  background: #17a2b8;
-  color: white;
+  color: #667eea;
+
 }
 
 .edit-btn:hover {
-  background: #138496;
+  background: #f0f5ff;
+  transform: scale(1.05);
 }
 
 .delete-btn {
-  background: #dc3545;
-  color: white;
+  color: #ef4444;
+
 }
 
 .delete-btn:hover {
-  background: #c82333;
+  background: #fef2f2;
+  transform: scale(1.05);
 }
 
 .action-icon {
@@ -1183,12 +1186,8 @@ body {
   
   .class-header-top {
     flex-direction: column;
-    gap: 10px;
   }
   
-  .class-actions {
-    align-self: flex-end;
-  }
   
   .post-meta {
     flex-direction: column;
