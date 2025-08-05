@@ -127,10 +127,22 @@ function ClassView() {
 	return (
 		<div className="class-view">
 			<header className="class-header">
-				<button onClick={() => navigate("/dashboard")} className="back-btn">
-					<ArrowLeftIcon className="back-icon" />
-					Volver al Dashboard
-				</button>
+				<div className="class-header-top">
+					<button onClick={() => navigate("/dashboard")} className="back-btn">
+						<ArrowLeftIcon className="back-icon" />
+					</button>
+					{userRole === "maestro" && (
+						<div className="class-header-actions">
+							<button 
+								onClick={() => setShowCreatePost(true)}
+								className="btn-primary"
+							>
+								<PlusIcon className="btn-icon" />
+								Crear Publicación
+							</button>
+						</div>
+					)}
+				</div>
 				<div className="class-info">
 					<h1>{classData.nombre}</h1>
 					<div className="class-code-container">
@@ -163,18 +175,6 @@ function ClassView() {
 			</header>
 
 			<main className="class-main">
-				<div className="class-actions">
-					{userRole === "maestro" && (
-						<button 
-							onClick={() => setShowCreatePost(true)}
-							className="btn-primary"
-						>
-							<PlusIcon className="btn-icon" />
-							Crear Publicación
-						</button>
-					)}
-				</div>
-
 				<div className="posts-section">
 					<h2>
 						<DocumentTextIcon className="section-icon" />
