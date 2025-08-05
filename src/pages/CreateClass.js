@@ -44,7 +44,7 @@ function CreateClass({ onClose, onClassCreated }) {
 
 	return (
 		<div className="modal-overlay">
-			<div className="modal">
+			<div className="modal fade-in">
 				<div className="modal-header">
 					<h2>
 						<AcademicCapIcon className="modal-icon" />

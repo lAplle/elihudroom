@@ -4,11 +4,27 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ClassView from "./pages/ClassView";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { AcademicCapIcon } from "@heroicons/react/24/outline";
 import "./App.css";
 
 // Componente para proteger rutas
 function PrivateRoute({ children }) {
-	const { user } = useAuth();
+	const { user, loading } = useAuth();
+	
+	if (loading) {
+		return (
+			<div className="loading-container">
+				<div className="loading-spinner">
+					<div className="spinner-ring"></div>
+					<div className="spinner-logo">
+						<AcademicCapIcon className="spinner-icon" />
+					</div>
+				</div>
+				<div className="loading-text">Verificando autenticación...</div>
+			</div>
+		);
+	}
+	
 	return user ? children : <Navigate to="/" />;
 }
 

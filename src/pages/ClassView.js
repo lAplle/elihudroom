@@ -107,7 +107,17 @@ function ClassView() {
 	};
 
 	if (loading) {
-		return <div className="loading">Cargando clase...</div>;
+		return (
+			<div className="loading-container">
+				<div className="loading-spinner">
+					<div className="spinner-ring"></div>
+					<div className="spinner-logo">
+						<AcademicCapIcon className="spinner-icon" />
+					</div>
+				</div>
+				<div className="loading-text">Cargando clase...</div>
+			</div>
+		);
 	}
 
 	if (!classData) {

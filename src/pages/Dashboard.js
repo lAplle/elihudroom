@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CreateClass from "./CreateClass";
 import JoinClass from "./JoinClass";
 import ClassList from "../components/ClassList";
+import { useModalTransition } from "../hooks/useModalTransition";
 import { 
 	AcademicCapIcon, 
 	UserGroupIcon, 
@@ -19,8 +20,8 @@ function Dashboard() {
 	const [userRole, setUserRole] = useState(null);
 	const [userClasses, setUserClasses] = useState([]);
 	const [loading, setLoading] = useState(true);
-	const [showCreateClass, setShowCreateClass] = useState(false);
-	const [showJoinClass, setShowJoinClass] = useState(false);
+	const createClassModal = useModalTransition();
+	const joinClassModal = useModalTransition();
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -76,7 +77,17 @@ function Dashboard() {
 	};
 
 	if (loading) {
-		return <div className="loading">Cargando...</div>;
+		return (
+			<div className="loading-container">
+				<div className="loading-spinner">
+					<div className="spinner-ring"></div>
+					<div className="spinner-logo">
+						<AcademicCapIcon className="spinner-icon" />
+					</div>
+				</div>
+				<div className="loading-text">Cargando Elihudroom...</div>
+			</div>
+		);
 	}
 
 	return (
@@ -112,7 +123,7 @@ function Dashboard() {
 				<div className="dashboard-actions">
 					{userRole === "maestro" ? (
 						<button 
-							onClick={() => setShowCreateClass(true)}
+							onClick={createClassModal.openModal}
 							className="btn-primary"
 						>
 							<PlusIcon className="btn-icon" />
@@ -120,7 +131,7 @@ function Dashboard() {
 						</button>
 					) : (
 						<button 
-							onClick={() => setShowJoinClass(true)}
+							onClick={joinClassModal.openModal}
 							className="btn-primary"
 						>
 							<UserPlusIcon className="btn-icon" />
@@ -157,22 +168,22 @@ function Dashboard() {
 				</div>
 			</main>
 
-			{showCreateClass && (
+			{createClassModal.isOpen && (
 				<CreateClass 
-					onClose={() => setShowCreateClass(false)}
+					onClose={createClassModal.closeModal}
 					onClassCreated={(newClass) => {
 						setUserClasses([...userClasses, newClass]);
-						setShowCreateClass(false);
+						createClassModal.closeModal();
 					}}
 				/>
 			)}
 
-			{showJoinClass && (
+			{joinClassModal.isOpen && (
 				<JoinClass 
-					onClose={() => setShowJoinClass(false)}
+					onClose={joinClassModal.closeModal}
 					onClassJoined={(newClass) => {
 						setUserClasses([...userClasses, newClass]);
-						setShowJoinClass(false);
+						joinClassModal.closeModal();
 					}}
 				/>
 			)}
