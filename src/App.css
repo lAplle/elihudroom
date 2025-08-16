@@ -194,7 +194,8 @@ body {
 .login-header-icon {
   width: 32px;
   height: 32px;
-  color: #667eea;
+  color: #dfe5ff;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
 }
 
 .login-header h1 {
@@ -1568,7 +1569,6 @@ body {
 }
 
   .password-toggle-btn:hover {
-  color: white !important;
   background: #5f5f5f38 !important;
 
   }
@@ -1576,7 +1576,7 @@ body {
   .password-toggle-icon {
     width: 16px;
     height: 16px;
-    color: #495057;
+    color: #62666b;
   }
 
 
