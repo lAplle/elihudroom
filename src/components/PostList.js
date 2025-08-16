@@ -455,9 +455,6 @@ import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 									rows="6"
 									required
 								/>
-								<small className="form-help-text">
-									💡 Los enlaces (URLs) y correos electrónicos se convertirán automáticamente en links clickeables para tus alumnos
-								</small>
 							</div>
 
 							<div className="form-group">

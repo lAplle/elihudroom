@@ -1500,30 +1500,6 @@ body {
   background-color: rgba(40, 167, 69, 0.1);
 }
 
-/* Estilos para texto de ayuda en formularios */
-.form-help-text {
-  color: #6c757d;
-  font-size: 0.875rem;
-  margin-top: 4px;
-  display: block;
-  font-style: italic;
-}
-
-/* Estilos para el componente de demostración */
-.link-demo {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 20px 0;
-}
-
-.link-demo h3 {
-  color: #495057;
-  margin-bottom: 15px;
-  font-size: 1.1rem;
-}
-
 .demo-content {
   line-height: 1.8;
   white-space: pre-line;
