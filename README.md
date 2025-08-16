@@ -128,6 +128,7 @@ Una plataforma educativa inspirada en Google Classroom que permite a maestros cr
    - Haz clic en "Crear Publicación"
    - Escribe título y contenido
    - **💡 Los enlaces (URLs) y correos electrónicos se convertirán automáticamente en links clickeables**
+   - **💡 Los saltos de línea (Enter) se preservarán en la publicación**
    - Adjunta archivos (PDFs o imágenes)
    - Publica
 
@@ -160,6 +161,7 @@ Una plataforma educativa inspirada en Google Classroom que permite a maestros cr
 - **Visualización Mejorada**: URLs largas se truncan automáticamente para mejor legibilidad
 - **Tooltips Informativos**: Muestra la URL/correo completo al hacer hover
 - **Estilos Diferenciados**: Los correos electrónicos tienen un color verde distintivo
+- **Preservación de Formato**: Los saltos de línea (Enter) se mantienen en las publicaciones
 
 ### 🎯 Tipos de Enlaces Soportados
 - **URLs Web**:

@@ -1461,7 +1461,7 @@ body {
 }
 
 /* Mejoras para el contenido de las publicaciones */
-.post-content p {
+.post-content {
   line-height: 1.6;
   word-wrap: break-word;
 }
@@ -1471,6 +1471,12 @@ body {
   align-items: center;
   gap: 4px;
   margin: 2px 0;
+}
+
+/* Estilos para saltos de línea */
+.post-content br {
+  display: block;
+  margin: 8px 0;
 }
 
 .link-icon {

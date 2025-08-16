@@ -15,18 +15,40 @@ import { useAuth } from "../contexts/AuthContext";
 import { db } from "../firebase";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 
-function PostList({ posts, userRole, classId, onPostUpdated, onPostDeleted }) {
-	const { user } = useAuth();
-	const [selectedFile, setSelectedFile] = useState(null);
-	const [showFileModal, setShowFileModal] = useState(false);
-	const [editingPost, setEditingPost] = useState(null);
-	const [editTitle, setEditTitle] = useState("");
-	const [editContent, setEditContent] = useState("");
-	const [editFiles, setEditFiles] = useState([]);
-	const [showEditModal, setShowEditModal] = useState(false);
+	function PostList({ posts, userRole, classId, onPostUpdated, onPostDeleted }) {
+		const { user } = useAuth();
+		const [selectedFile, setSelectedFile] = useState(null);
+		const [showFileModal, setShowFileModal] = useState(false);
+		const [editingPost, setEditingPost] = useState(null);
+		const [editTitle, setEditTitle] = useState("");
+		const [editContent, setEditContent] = useState("");
+		const [editFiles, setEditFiles] = useState([]);
+		const [showEditModal, setShowEditModal] = useState(false);
 
-	// Función para convertir links en texto a enlaces clickeables
-	const convertLinksToClickable = (text) => {
+		// Event listener para manejar clics en enlaces generados dinámicamente
+		React.useEffect(() => {
+			const handleLinkClick = (e) => {
+				if (e.target.tagName === 'A' && e.target.classList.contains('clickable-link')) {
+					e.preventDefault();
+					const href = e.target.getAttribute('href');
+					const isEmail = e.target.classList.contains('email-link');
+					
+					if (isEmail) {
+						// Para correos, usar el comportamiento normal del enlace
+						window.location.href = href;
+					} else {
+						// Para URLs, abrir en nueva pestaña
+						window.open(href, '_blank');
+					}
+				}
+			};
+
+			document.addEventListener('click', handleLinkClick);
+			return () => document.removeEventListener('click', handleLinkClick);
+		}, []);
+
+	// Función para convertir links en texto a enlaces clickeables HTML
+	const convertLinksToClickableHTML = (text) => {
 		if (!text) return "";
 		
 		// Regex mejorado para detectar URLs y correos electrónicos
@@ -34,7 +56,7 @@ function PostList({ posts, userRole, classId, onPostUpdated, onPostDeleted }) {
 		
 		return text.split(urlRegex).map((part, index) => {
 			if (urlRegex.test(part)) {
-				// Si es una URL o correo, convertirla en enlace clickeable
+				// Si es una URL o correo, convertirla en enlace clickeable HTML
 				let url = part;
 				let displayText = part;
 				let isEmail = false;
@@ -54,30 +76,15 @@ function PostList({ posts, userRole, classId, onPostUpdated, onPostDeleted }) {
 					displayText = part.substring(0, 47) + '...';
 				}
 				
-				return (
-					<a 
-						key={index}
-						href={url} 
-						target={isEmail ? "_self" : "_blank"}
-						rel={isEmail ? "" : "noopener noreferrer"}
-						className={`clickable-link ${isEmail ? 'email-link' : ''}`}
-						title={part} // Mostrar URL/correo completo en tooltip
-						onClick={(e) => {
-							e.stopPropagation();
-							// Para correos, usar el comportamiento normal del enlace
-							// Para URLs, abrir en nueva pestaña
-							if (!isEmail) {
-								window.open(url, '_blank');
-							}
-						}}
-					>
-						{displayText}
-						<ArrowTopRightOnSquareIcon className="link-icon" />
-					</a>
-				);
+				// Crear HTML string para el enlace
+				const target = isEmail ? '_self' : '_blank';
+				const rel = isEmail ? '' : 'noopener noreferrer';
+				const className = `clickable-link ${isEmail ? 'email-link' : ''}`;
+				
+				return `<a href="${url}" target="${target}" rel="${rel}" class="${className}" title="${part}">${displayText}<svg class="link-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>`;
 			}
 			return part;
-		});
+		}).join('');
 	};
 
 	const formatDate = (date) => {
@@ -342,7 +349,7 @@ function PostList({ posts, userRole, classId, onPostUpdated, onPostDeleted }) {
 					</div>
 						
 						<div className="post-content">
-							<p>{convertLinksToClickable(post.contenido)}</p>
+							<div dangerouslySetInnerHTML={{ __html: convertLinksToClickableHTML(post.contenido).replace(/\n/g, '<br />') }} />
 						</div>
 						
 						{post.archivos && post.archivos.length > 0 && (
