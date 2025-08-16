@@ -1438,3 +1438,87 @@ body {
     align-self: flex-start;
   }
 }
+
+/* Estilos para links clickeables en publicaciones */
+.clickable-link {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  word-break: break-all;
+}
+
+.clickable-link:hover {
+  color: #0056b3;
+  text-decoration: none;
+  background-color: rgba(0, 123, 255, 0.1);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.clickable-link:active {
+  transform: scale(0.98);
+}
+
+/* Mejoras para el contenido de las publicaciones */
+.post-content p {
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.post-content .clickable-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 2px 0;
+}
+
+.link-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.clickable-link:hover .link-icon {
+  opacity: 1;
+}
+
+/* Estilos específicos para enlaces de correo electrónico */
+.email-link {
+  color: #28a745;
+}
+
+.email-link:hover {
+  color: #1e7e34;
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+/* Estilos para texto de ayuda en formularios */
+.form-help-text {
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  display: block;
+  font-style: italic;
+}
+
+/* Estilos para el componente de demostración */
+.link-demo {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.link-demo h3 {
+  color: #495057;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.demo-content {
+  line-height: 1.8;
+  white-space: pre-line;
+}

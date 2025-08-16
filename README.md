@@ -7,12 +7,14 @@ Una plataforma educativa inspirada en Google Classroom que permite a maestros cr
 ### 👨‍🏫 Para Maestros:
 - Crear clases con nombre, descripción y código único
 - Hacer publicaciones con texto y archivos adjuntos (PDFs e imágenes)
+- **Links automáticamente clickeables** - Las URLs y correos electrónicos se convierten en enlaces para los alumnos
 - Gestionar múltiples clases
 - Ver lista de alumnos inscritos
 
 ### 👨‍🎓 Para Alumnos:
 - Unirse a clases usando códigos únicos
 - Ver publicaciones del maestro en tiempo real
+- **Acceso directo a enlaces** - Hacer clic en URLs sin copiar y pegar
 - Descargar archivos adjuntos (PDFs e imágenes)
 - Acceder a múltiples clases
 
@@ -125,6 +127,7 @@ Una plataforma educativa inspirada en Google Classroom que permite a maestros cr
    - Entra a tu clase
    - Haz clic en "Crear Publicación"
    - Escribe título y contenido
+   - **💡 Los enlaces (URLs) y correos electrónicos se convertirán automáticamente en links clickeables**
    - Adjunta archivos (PDFs o imágenes)
    - Publica
 
@@ -137,6 +140,7 @@ Una plataforma educativa inspirada en Google Classroom que permite a maestros cr
 2. **Ver Publicaciones**
    - Entra a la clase
    - Ve las publicaciones del maestro
+   - **Haz clic directamente en los enlaces** sin copiar y pegar URLs
    - Descarga archivos adjuntos
 
 ## 🎨 Características de la UI
@@ -145,6 +149,33 @@ Una plataforma educativa inspirada en Google Classroom que permite a maestros cr
 - **Interfaz Moderna**: Gradientes y animaciones suaves
 - **Tiempo Real**: Las publicaciones se actualizan automáticamente
 - **Navegación Intuitiva**: Fácil de usar para todos los usuarios
+- **Links Inteligentes**: URLs se convierten automáticamente en enlaces clickeables
+
+## 🔗 Funcionalidad de Links Clickeables
+
+### ✨ Características
+- **Detección Automática**: Detecta URLs de HTTP, HTTPS, WWW, FTP y correos electrónicos
+- **Conversión Automática**: Los enlaces se convierten en clickeables sin configuración adicional
+- **Apertura Segura**: Los links web se abren en nuevas pestañas, los correos en la misma pestaña
+- **Visualización Mejorada**: URLs largas se truncan automáticamente para mejor legibilidad
+- **Tooltips Informativos**: Muestra la URL/correo completo al hacer hover
+- **Estilos Diferenciados**: Los correos electrónicos tienen un color verde distintivo
+
+### 🎯 Tipos de Enlaces Soportados
+- **URLs Web**:
+  - `https://www.ejemplo.com`
+  - `http://www.ejemplo.com`
+  - `www.ejemplo.com` (se convierte automáticamente a https)
+  - `ftp://ejemplo.com`
+- **Correos Electrónicos**:
+  - `correo@ejemplo.com` (se convierte automáticamente a mailto:)
+  - `mailto:correo@ejemplo.com` (ya formateado)
+
+### 💡 Beneficios
+- **Mejor UX**: Los alumnos no necesitan copiar y pegar URLs
+- **Accesibilidad**: Enlaces claramente identificables con estilos visuales
+- **Eficiencia**: Acceso directo a recursos educativos
+- **Profesionalismo**: Interfaz más pulida y moderna
 
 ## 🔒 Seguridad
 

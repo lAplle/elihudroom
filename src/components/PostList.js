@@ -8,7 +8,8 @@ import {
 	XMarkIcon,
 	ArrowDownTrayIcon,
 	PencilIcon,
-	TrashIcon
+	TrashIcon,
+	ArrowTopRightOnSquareIcon
 } from "@heroicons/react/24/outline";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../firebase";
@@ -23,6 +24,62 @@ function PostList({ posts, userRole, classId, onPostUpdated, onPostDeleted }) {
 	const [editContent, setEditContent] = useState("");
 	const [editFiles, setEditFiles] = useState([]);
 	const [showEditModal, setShowEditModal] = useState(false);
+
+	// Función para convertir links en texto a enlaces clickeables
+	const convertLinksToClickable = (text) => {
+		if (!text) return "";
+		
+		// Regex mejorado para detectar URLs y correos electrónicos
+		const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|ftp:\/\/[^\s]+|mailto:[^\s]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/gi;
+		
+		return text.split(urlRegex).map((part, index) => {
+			if (urlRegex.test(part)) {
+				// Si es una URL o correo, convertirla en enlace clickeable
+				let url = part;
+				let displayText = part;
+				let isEmail = false;
+				
+				// Detectar si es un correo electrónico
+				if (part.includes('@') && part.includes('.') && !part.startsWith('http') && !part.startsWith('www') && !part.startsWith('ftp') && !part.startsWith('mailto:')) {
+					url = 'mailto:' + part;
+					isEmail = true;
+				}
+				// Agregar https:// si empieza con www.
+				else if (part.toLowerCase().startsWith('www.')) {
+					url = 'https://' + part;
+				}
+				
+				// Truncar URLs muy largas para mejor visualización (solo para URLs, no para correos)
+				if (!isEmail && part.length > 50) {
+					displayText = part.substring(0, 47) + '...';
+				}
+				
+				return (
+					<a 
+						key={index}
+						href={url} 
+						target={isEmail ? "_self" : "_blank"}
+						rel={isEmail ? "" : "noopener noreferrer"}
+						className={`clickable-link ${isEmail ? 'email-link' : ''}`}
+						title={part} // Mostrar URL/correo completo en tooltip
+						onClick={(e) => {
+							e.stopPropagation();
+							// Para correos, usar el comportamiento normal del enlace
+							// Para URLs, abrir en nueva pestaña
+							if (!isEmail) {
+								window.open(url, '_blank');
+							}
+						}}
+					>
+						{displayText}
+						<ArrowTopRightOnSquareIcon className="link-icon" />
+					</a>
+				);
+			}
+			return part;
+		});
+	};
+
 	const formatDate = (date) => {
 		if (!date) return "";
 		const d = date.toDate ? date.toDate() : new Date(date);
@@ -285,7 +342,7 @@ function PostList({ posts, userRole, classId, onPostUpdated, onPostDeleted }) {
 					</div>
 						
 						<div className="post-content">
-							<p>{post.contenido}</p>
+							<p>{convertLinksToClickable(post.contenido)}</p>
 						</div>
 						
 						{post.archivos && post.archivos.length > 0 && (
@@ -391,6 +448,9 @@ function PostList({ posts, userRole, classId, onPostUpdated, onPostDeleted }) {
 									rows="6"
 									required
 								/>
+								<small className="form-help-text">
+									💡 Los enlaces (URLs) y correos electrónicos se convertirán automáticamente en links clickeables para tus alumnos
+								</small>
 							</div>
 
 							<div className="form-group">
