@@ -7,7 +7,7 @@ import {
 import { setDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { AcademicCapIcon } from "@heroicons/react/24/outline";
+import { AcademicCapIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 function Login() {
 	const [name, setName] = useState("");
@@ -19,6 +19,8 @@ function Login() {
 	const [isTransitioning, setIsTransitioning] = useState(false);
 	const navigate = useNavigate();
 	const { user } = useAuth();
+	const [showPassword, setShowPassword] = useState(false);
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
 	useEffect(() => {
 		if (user) {
@@ -82,22 +84,50 @@ function Login() {
 						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
-					<input
-						type="password"
-						placeholder="Contraseña"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
+					<div className="password-input-container">
+						<input
+							type={showPassword ? "text" : "password"}
+							placeholder="Contraseña"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
+						/>
+						<button
+							type="button"
+							className="password-toggle-btn"
+							onClick={() => setShowPassword(!showPassword)}
+							title={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+						>
+							{showPassword ? (
+								<EyeSlashIcon className="password-toggle-icon" />
+							) : (
+								<EyeIcon className="password-toggle-icon" />
+							)}
+						</button>
+					</div>
 					{isRegister && (
 						<>
-							<input
-								type="password"
-								placeholder="Confirmar contraseña"
-								value={confirmPassword}
-								onChange={(e) => setConfirmPassword(e.target.value)}
-								required
-							/>
+							<div className="password-input-container">
+								<input
+									type={showConfirmPassword ? "text" : "password"}
+									placeholder="Confirmar contraseña"
+									value={confirmPassword}
+									onChange={(e) => setConfirmPassword(e.target.value)}
+									required
+								/>
+								<button
+									type="button"
+									className="password-toggle-btn"
+									onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+									title={showConfirmPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+								>
+									{showConfirmPassword ? (
+										<EyeSlashIcon className="password-toggle-icon" />
+									) : (
+										<EyeIcon className="password-toggle-icon" />
+									)}
+								</button>
+							</div>
 							<select
 								value={role}
 								onChange={(e) => setRole(e.target.value)}
