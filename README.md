@@ -127,8 +127,6 @@ Una plataforma educativa inspirada en Google Classroom que permite a maestros cr
    - Entra a tu clase
    - Haz clic en "Crear Publicación"
    - Escribe título y contenido
-   - **💡 Los enlaces (URLs) y correos electrónicos se convertirán automáticamente en links clickeables**
-   - **💡 Los saltos de línea (Enter) se preservarán en la publicación**
    - Adjunta archivos (PDFs o imágenes)
    - Publica
 
@@ -141,7 +139,6 @@ Una plataforma educativa inspirada en Google Classroom que permite a maestros cr
 2. **Ver Publicaciones**
    - Entra a la clase
    - Ve las publicaciones del maestro
-   - **Haz clic directamente en los enlaces** sin copiar y pegar URLs
    - Descarga archivos adjuntos
 
 ## 🎨 Características de la UI
@@ -219,7 +216,7 @@ npm run build
 
 ### Error de Storage
 - Verifica las reglas de Storage
-- Confirma que los archivos no excedan el límite
+- Confirma que los archivos no excedan el límite (1MB máximo con el plan gratuito que ofrece Firebase)
 
 ## 📞 Soporte
 
@@ -227,6 +224,7 @@ Si tienes problemas o preguntas:
 1. Revisa la documentación de Firebase
 2. Verifica la consola del navegador para errores
 3. Asegúrate de que todas las dependencias estén instaladas
+4. Si es necesario, contáctame al correo: aplleworks@gmail.com
 
 ## 📄 Licencia
 
