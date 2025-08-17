@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ClassView from "./pages/ClassView";
@@ -7,7 +7,7 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
 import "./App.css";
 
-// Componente para proteger rutas
+// Componente para proteger rutas (usando HashRouter para GitHub Pages)
 function PrivateRoute({ children }) {
 	const { user, loading } = useAuth();
 	
