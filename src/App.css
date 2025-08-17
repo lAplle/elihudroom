@@ -195,7 +195,7 @@ body {
   width: 32px;
   height: 32px;
   color: #dfe5ff;
-  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,1));
 }
 
 .login-header h1 {
@@ -1354,6 +1354,17 @@ body {
 }
 
 /* Responsive */
+
+@media (max-width: 440px) { /* Responsive para el header de la clase, que soporte resoluciones mínimas de 360px aprox. */
+  .class-card-header {
+    display: block;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 8px;
+  }
+}
+
 @media (max-width: 768px) {
   .login-header {
     margin-bottom: 20px;
@@ -1367,8 +1378,7 @@ body {
     width: 28px;
     height: 28px;
   }
-}
-@media (max-width: 768px) {
+
   .dashboard-header {
     flex-direction: column;
     gap: 15px;
